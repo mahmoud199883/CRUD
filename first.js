@@ -1,13 +1,13 @@
 
 
 
-
 var productname=document.getElementById("productname");
 var productprice=document.getElementById("productprice");
 var productcategory=document.getElementById("productcategory");
 var productdescription=document.getElementById("productdescription");
  var  addbtn =document.getElementById("mybtn");
  var currentindex=0;
+
  addbtn.addEventListener("click" ,function()
  {
   if(addbtn.innerHTML == "add")
@@ -66,7 +66,6 @@ function display()
         }
         document.getElementById("mybody").innerHTML=content;
 }
-
 
 function clearform()
 {
@@ -143,3 +142,51 @@ function saveupdate()
 
 
 }
+
+
+// validation using regular expression
+var nameregrexp=/[a-zA-Z]/;
+var priceregex=/[0-9]/;
+// productname.addEventListener("keyup",function()
+// {
+//   if(nameregrexp.test(productname.value)==false)
+//   {
+//     productname.classList.remove("is-valid");
+//     productname.classList.add("is-invalid");
+//   }
+//   else
+//   {
+//     productname.classList.remove("is-invalid");
+//     productname.classList.add("is-valid");
+//   }
+// })
+
+function testregex(inputname,regexname)
+{
+  if(regexname.test(inputname.value)==false)
+  {
+    inputname.classList.remove("is-valid");
+    inputname.classList.add("is-invalid");
+  }
+  else
+  {
+    inputname.classList.remove("is-invalid");
+    inputname.classList.add("is-valid");
+  }
+}
+
+productname.addEventListener("keyup",function()
+{
+  testregex(productname,nameregrexp)
+});
+productcategory.addEventListener("keyup",function()
+{
+  testregex(productcategory,nameregrexp)
+});
+
+productprice.addEventListener("keyup",function()
+{
+  testregex(productprice,priceregex)
+});
+
+
